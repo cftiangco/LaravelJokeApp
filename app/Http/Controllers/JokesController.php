@@ -21,12 +21,22 @@ class JokesController extends Controller
 
     public function store()
     {
+        $validated = request()->validate([
+            'author' => 'required|min:3|max:120',
+            'title' => 'required|min:3|max:255',
+            'details' => 'required|min:20|'
+        ]);
+
+        /*
     	$joke = new Joke();
     	$joke->author = request('author');
     	$joke->title = request('title');
     	$joke->details = request('details');
-
+    
     	$joke->save();
+        */
+
+        Joke::create($validated);
 
     	return redirect('/');
     }
@@ -49,14 +59,23 @@ class JokesController extends Controller
     	return redirect('/');
     }
 
-    public function update($id)
+    public function update(Joke $joke)
     {
+        $validated = request()->validate([
+            'author' => 'required|min:3|max:120',
+            'title' => 'required|min:3|max:255',
+            'details' => 'required|min:20|'
+        ]);
+
+        $joke->update($validated);
+        /*
     	$joke = Joke::find($id);
     	$joke->author = request('author');
     	$joke->title = request('title');
     	$joke->details = request('details');
 
     	$joke->save();
+        */
 
     	return redirect('/');
     }

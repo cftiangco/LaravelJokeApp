@@ -25,4 +25,4 @@ Route::get('/jokes/{id}','JokesController@show');
 Route::delete('/jokes/{id}','JokesController@destroy');
 Route::get('/jokes/{id}/edit','JokesController@edit');
 
-Route::patch('/jokes/{id}','JokesController@update');
+Route::patch('/jokes/{joke}','JokesController@update');

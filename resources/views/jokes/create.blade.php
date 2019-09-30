@@ -6,27 +6,36 @@
 
 		<div class="col-sm-8">
 			<h1>Post New Joke</h1>
+
+			@include('error')
+
 			<br />
 			<form method="POST" action="/jokes">
 				@csrf
 				<div class="form-row">
 					<div class="col">
 						<label for="author">Author</label>
-						<input type="text" class="form-control" placeholder="Author" id="author" name="author">
+						<input type="text" 
+						class="form-control @error('author') is-invalid @enderror" placeholder="Author" 
+						id="author" name="author" value="{{ old('author') }}">
 					</div>
 				</div>
 
 				<div class="form-row">
 					<div class="col">
 						<label for="title">Title</label>
-						<input type="text" class="form-control" placeholder="Title" id="title" name="title">
+						<input type="text" 
+						class="form-control @error('title') is-invalid @enderror" 
+						placeholder="Title" id="title" name="title" value="{{ old('title') }}">
 					</div>
 				</div>
 
 				<div class="form-row">
 					<div class="col">
 						<label for="details">Details</label>
-						<textarea class="form-control" id="details" name="details" placeholder="Details"></textarea>
+						<textarea id="details" name="details" 
+						class="form-control @error('details') is-invalid @enderror" 
+						placeholder="Details">{{ old('details') }}</textarea>
 					</div>
 				</div>
 				<br>
