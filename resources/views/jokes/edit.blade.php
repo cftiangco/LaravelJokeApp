@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.app')
 
 @section('content')
 
@@ -14,14 +14,7 @@
 			<form method="POST" action="/jokes/{{ $joke->id }}">
 				@method('PATCH')
 				@csrf
-				<div class="form-row">
-					<div class="col">
-						<label for="author">Author</label>
-						<input type="text" class="form-control" placeholder="Author" id="author" name="author" 
-						value="{{$errors->has('author') ? old('author') : $joke->author}}">
-					</div>
-				</div>
-
+				
 				<div class="form-row">
 					<div class="col">
 						<label for="title">Title</label>

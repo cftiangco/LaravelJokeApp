@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.app')
 
 @section('content')
 	<div class="row mt-5">
@@ -10,17 +10,8 @@
 			@include('error')
 
 			<br />
-			<form method="POST" action="/jokes">
+			<form method="POST" action="/jokes" enctype="multipart/form-data">
 				@csrf
-				<div class="form-row">
-					<div class="col">
-						<label for="author">Author</label>
-						<input type="text" 
-						class="form-control @error('author') is-invalid @enderror" placeholder="Author" 
-						id="author" name="author" value="{{ old('author') }}">
-					</div>
-				</div>
-
 				<div class="form-row">
 					<div class="col">
 						<label for="title">Title</label>
@@ -38,6 +29,10 @@
 						placeholder="Details">{{ old('details') }}</textarea>
 					</div>
 				</div>
+				<div class="form-group">
+				    <label for="exampleFormControlFile1">Upload cover image</label>
+				    <input type="file" class="form-control-file" id="exampleFormControlFile1" name="image">
+				 </div>
 				<br>
 				<button type="submit" class="btn btn-primary">Post</button>
 			</form>

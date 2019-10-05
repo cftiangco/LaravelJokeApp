@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateJokesTable extends Migration
+class CreateCommentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateJokesTable extends Migration
      */
     public function up()
     {
-        Schema::create('jokes', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->bigIncrements('id');
-            $table->UnsignedInteger('user_id');
-            $table->string('title');
-            $table->text('details');
-            $table->string('image')->default('/images/default.jpg');
+            $table->unsignedInteger('joke_id');
+            $table->unsignedBigInteger('user_id');
+            $table->string('comment');
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -31,6 +31,6 @@ class CreateJokesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jokes');
+        Schema::dropIfExists('comments');
     }
 }

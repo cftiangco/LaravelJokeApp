@@ -20,9 +20,18 @@ Route::get('/', 'JokesController@index');
 Route::get('/jokes/create','JokesController@create');
 Route::post('/jokes','JokesController@store');
 
-Route::get('/jokes/{id}','JokesController@show');
+Route::get('/jokes/{joke}','JokesController@show');
 
-Route::delete('/jokes/{id}','JokesController@destroy');
+Route::delete('/jokes/{joke}','JokesController@destroy');
 Route::get('/jokes/{id}/edit','JokesController@edit');
 
 Route::patch('/jokes/{joke}','JokesController@update');
+
+// =========== COMMENTS ROUTE =============== //
+
+Route::post('/jokes/{joke}/comments','CommentsController@store');
+Route::delete('/jokes/comments/{comment}','CommentsController@destroy');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
